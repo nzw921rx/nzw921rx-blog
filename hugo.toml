@@ -1,0 +1,19 @@
+baseURL = "https://nzw921rx.github.io/"
+languageCode = "zh-cn"
+title = "Niu Zhiwei Blog"
+theme = "PaperMod"
+
+[params]
+  ShowReadingTime = true
+  ShowCodeCopyButtons = true
+  defaultTheme = "auto"
+
+[menu]
+  [[menu.main]]
+    name = "Posts"
+    url = "/posts/"
+    weight = 1
+  [[menu.main]]
+    name = "Tags"
+    url = "/tags/"
+    weight = 2
