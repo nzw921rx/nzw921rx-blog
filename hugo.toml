@@ -1,14 +1,26 @@
-baseURL = "https://nzw921rx.github.io/"
+baseURL = "https://nzw921rx.github.io/nzw921rx-blog/"
 languageCode = "zh-cn"
-title = "Niu Zhiwei Blog"
+locale = "zh-CN"
+title = "Niu Zhiwei 的个人技术博客"
 theme = "PaperMod"
+description = "聚焦 Java、Go、大数据与 AI 工程实践的个人技术博客"
 
 [params]
+  author = "Niu Zhiwei"
+  description = "聚焦 Java、Go、大数据与 AI 工程实践的个人技术博客"
   ShowReadingTime = true
   ShowCodeCopyButtons = true
+  ShowShareButtons = true
+  ShowPostNavLinks = true
+  ShowBreadCrumbs = true
+  ShowToc = true
+  TocOpen = false
   defaultTheme = "auto"
-
   env = "production"
+  DateFormat = "2006 年 1 月 2 日"
+  mainSections = ["posts"]
+  disableThemeToggle = false
+  ShowFullTextinRSS = true
 
   [params.homeInfoParams]
     Eyebrow = "Personal Tech Blog"
@@ -23,14 +35,18 @@ theme = "PaperMod"
 
 [menu]
   [[menu.main]]
-    name = "Posts"
+    name = "文章"
     url = "/posts/"
     weight = 1
   [[menu.main]]
-    name = "Categories"
+    name = "分类"
     url = "/categories/"
     weight = 2
   [[menu.main]]
-    name = "Tags"
+    name = "标签"
     url = "/tags/"
     weight = 3
+  [[menu.main]]
+    name = "关于"
+    url = "/about/"
+    weight = 4
