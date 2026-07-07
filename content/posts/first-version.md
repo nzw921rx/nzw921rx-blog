@@ -2,6 +2,7 @@
 title: "我的个人博客第一版上线"
 date: 2026-07-07
 draft: false
+summary: "第一版博客上线：从写作动机、技术选型到后续计划，记录这个个人技术空间的起点。"
 tags: ["blog", "hugo", "papermod"]
 ---
 
