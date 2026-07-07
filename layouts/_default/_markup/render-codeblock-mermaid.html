@@ -1,0 +1,32 @@
+<div class="mermaid">
+{{- .Inner | safeHTML }}
+</div>
+{{- if not (.Page.Store.Get "hasMermaid") }}
+{{- .Page.Store.Set "hasMermaid" true }}
+<script type="module">
+    if (!window.__nzwMermaidStarted) {
+        window.__nzwMermaidStarted = true;
+        const { default: mermaid } = await import("https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs");
+
+        const isDarkTheme = () =>
+            document.body.classList.contains("dark") ||
+            document.documentElement.dataset.theme === "dark" ||
+            window.matchMedia("(prefers-color-scheme: dark)").matches;
+
+        const renderMermaid = async () => {
+            mermaid.initialize({
+                startOnLoad: false,
+                theme: isDarkTheme() ? "dark" : "default"
+            });
+
+            await mermaid.run({ querySelector: ".mermaid" });
+        };
+
+        if (document.readyState === "loading") {
+            document.addEventListener("DOMContentLoaded", renderMermaid, { once: true });
+        } else {
+            await renderMermaid();
+        }
+    }
+</script>
+{{- end }}
