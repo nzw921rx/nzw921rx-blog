@@ -1,5 +1,5 @@
-baseURL = "https://nzw921rx.github.io/"
-languageCode = "zh-cn"
+baseURL = "https://nzw921rx.github.io/nzw921rx-blog/"
+locale = "zh-CN"
 title = "Niu Zhiwei 的个人技术博客"
 theme = "PaperMod"
 description = "Niu Zhiwei 的个人技术博客"
@@ -15,10 +15,15 @@ description = "Niu Zhiwei 的个人技术博客"
   ShowToc = true
   TocOpen = false
   defaultTheme = "auto"
+  env = "production"
+  DateFormat = "2006 年 1 月 2 日"
+  mainSections = ["posts"]
+  disableThemeToggle = false
+  ShowFullTextinRSS = true
 
   [params.homeInfoParams]
-    Title = "欢迎来到 Niu Zhiwei 的个人技术博客"
-    Content = "这里记录技术实践、学习笔记与工程思考。"
+    Title = "把技术实践，整理成长期资产。"
+    Content = "你好，我是 Niu Zhiwei。这里记录 Web 开发、后端工程、工具效率和个人项目复盘。慢慢写，长期迭代。"
 
   [[params.socialIcons]]
     name = "github"
