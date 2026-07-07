@@ -29,6 +29,19 @@ description = "聚焦 Java、Go、大数据与 AI 工程实践的个人技术博
     name = "github"
     url = "https://github.com/nzw921rx"
 
+  env = "production"
+
+  [params.homeInfoParams]
+    Eyebrow = "Personal Tech Blog"
+    Title = "Niu Zhiwei"
+    Content = "记录 Java、Go、大数据与 AI 工程实践。关注数据处理、系统设计与长期可复用的技术经验。"
+    Tags = ["Java", "Go", "Flink", "Spark", "SeaTunnel", "AI Engineering"]
+    AlignSocialIconsTo = "left"
+
+  [[params.socialIcons]]
+    name = "github"
+    url = "https://github.com/nzw921rx"
+
 [menu]
   [[menu.main]]
     name = "文章"
