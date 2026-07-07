@@ -1,19 +1,39 @@
 baseURL = "https://nzw921rx.github.io/"
 languageCode = "zh-cn"
-title = "Niu Zhiwei Blog"
+title = "Niu Zhiwei 的个人技术博客"
 theme = "PaperMod"
+description = "Niu Zhiwei 的个人技术博客"
 
 [params]
+  author = "Niu Zhiwei"
+  description = "Niu Zhiwei 的个人技术博客"
   ShowReadingTime = true
   ShowCodeCopyButtons = true
+  ShowShareButtons = true
+  ShowPostNavLinks = true
+  ShowBreadCrumbs = true
+  ShowToc = true
+  TocOpen = false
   defaultTheme = "auto"
+
+  [params.homeInfoParams]
+    Title = "欢迎来到 Niu Zhiwei 的个人技术博客"
+    Content = "这里记录技术实践、学习笔记与工程思考。"
+
+  [[params.socialIcons]]
+    name = "github"
+    url = "https://github.com/nzw921rx"
 
 [menu]
   [[menu.main]]
-    name = "Posts"
+    name = "文章"
     url = "/posts/"
     weight = 1
   [[menu.main]]
-    name = "Tags"
+    name = "标签"
     url = "/tags/"
     weight = 2
+  [[menu.main]]
+    name = "关于"
+    url = "/about/"
+    weight = 3
