@@ -2,11 +2,11 @@ baseURL = "https://nzw921rx.github.io/nzw921rx-blog/"
 locale = "zh-CN"
 title = "Niu Zhiwei 的个人技术博客"
 theme = "PaperMod"
-description = "Niu Zhiwei 的个人技术博客"
+description = "聚焦 Java、Go、大数据与 AI 工程实践的个人技术博客"
 
 [params]
   author = "Niu Zhiwei"
-  description = "Niu Zhiwei 的个人技术博客"
+  description = "聚焦 Java、Go、大数据与 AI 工程实践的个人技术博客"
   ShowReadingTime = true
   ShowCodeCopyButtons = true
   ShowShareButtons = true
@@ -23,7 +23,7 @@ description = "Niu Zhiwei 的个人技术博客"
 
   [params.homeInfoParams]
     Title = "把技术实践，整理成长期资产。"
-    Content = "你好，我是 Niu Zhiwei。这里记录 Web 开发、后端工程、工具效率和个人项目复盘。慢慢写，长期迭代。"
+    Content = "你好，我是 Niu Zhiwei。这里主要记录 Java、Go、大数据与 AI 工程实践，重点关注 Flink、Spark、SeaTunnel 等数据处理与集成技术。"
 
   [[params.socialIcons]]
     name = "github"
