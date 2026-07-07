@@ -1,0 +1,22 @@
+{{- with site.Params.homeInfoParams }}
+<article class="first-entry home-info home-card">
+    <div class="home-card__eyebrow">{{ .Eyebrow | default "Personal Tech Blog" }}</div>
+    <header class="entry-header home-card__header">
+        <h1>{{ .Title | markdownify }}</h1>
+    </header>
+    <div class="entry-content md-content home-card__content">
+        {{ $opts := dict "display" "block" }}
+        {{ .Content | $.Page.RenderString $opts }}
+    </div>
+    {{- with .Tags }}
+    <ul class="home-card__tags" aria-label="关注方向">
+        {{- range . }}
+        <li>{{ . }}</li>
+        {{- end }}
+    </ul>
+    {{- end }}
+    <footer class="entry-footer home-card__footer">
+        {{ partial "social_icons.html" (dict "align" site.Params.homeInfoParams.AlignSocialIconsTo) }}
+    </footer>
+</article>
+{{- end -}}
