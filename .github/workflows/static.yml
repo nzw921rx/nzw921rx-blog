@@ -2,7 +2,8 @@
 name: Deploy static content to Pages
 
 on:
-  # Runs on pushes targeting the default branch
+  # Runs on pushes targeting the production branch.
+  # Keep this on main so work can remain the development branch until it is merged.
   push:
     branches: ["main"]
 
