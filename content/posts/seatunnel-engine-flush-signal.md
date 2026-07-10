@@ -1,6 +1,6 @@
 ---
 title: "SeaTunnel 引擎进阶之路：从 JDBC 定时 Flush 到 Engine-Level FlushSignal"
-date: 2026-07-10T20:00:00+08:00
+date: 2026-07-10T00:00:00+08:00
 draft: false
 tags: ["SeaTunnel", "Zeta", "JDBC", "FlushSignal", "源码分析", "引擎设计"]
 categories: ["SeaTunnel"]
