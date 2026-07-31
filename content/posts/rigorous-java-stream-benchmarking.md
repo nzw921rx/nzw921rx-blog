@@ -2,10 +2,10 @@
 title: "从 JMH 到流处理引擎：三篇性能评估论文精读与严谨基准方法"
 date: 2026-07-31T20:00:00+08:00
 draft: false
-tags: ["Java", "JMH", "Benchmark", "性能工程", "统计学", "流处理", "SeaTunnel", "Zeta", "论文精读"]
+tags: ["Java", "JMH", "Benchmark", "性能工程", "统计学", "流处理", "论文精读"]
 categories: ["性能工程"]
 author: "Niu Zhiwei"
-summary: "精读三篇性能评估经典论文，把 JVM 非确定性、分层重复实验、效应量置信区间、开放系统负载、端到端延迟和可持续吞吐串成一套可落地于 JMH 与 SeaTunnel Zeta 的严谨基准方法。"
+summary: "精读三篇性能评估经典论文，把 JVM 非确定性、分层重复实验、效应量置信区间、开放系统负载、端到端延迟和可持续吞吐串成一套从 JMH 到分布式流处理的严谨基准方法。"
 mermaid: true
 ---
 
@@ -33,7 +33,7 @@ mermaid: true
 
 - **论文事实**：论文的方法、数据和作者结论；
 - **现代 JMH 映射**：把论文概念映射到 JMH 的 Fork、Warmup 和 Measurement；
-- **工程推导**：面向 SeaTunnel Zeta 长期性能基线的设计建议，不代表论文原文结论。
+- **工程推导**：面向 Java 与分布式流处理系统的通用实践建议，不代表论文原文结论。
 
 ## 一、三篇论文其实在回答同一个问题
 
@@ -467,19 +467,19 @@ public class SerializerBenchmark {
 
     @State(Scope.Thread)
     public static class Input {
-        Serializer serializer;
-        SeaTunnelRow row;
+        RecordSerializer serializer;
+        Event event;
 
         @Setup(Level.Trial)
         public void setup() {
             serializer = createSerializer();
-            row = createRepresentativeRow();
+            event = createRepresentativeEvent();
         }
     }
 
     @Benchmark
     public void serialize(Input input, Blackhole blackhole) {
-        byte[] bytes = input.serializer.serialize(input.row);
+        byte[] bytes = input.serializer.serialize(input.event);
         blackhole.consume(bytes);
     }
 }
@@ -541,7 +541,7 @@ CI (99.9%): [3722540113.172, 4263600680.907]
 
 如果要判断新实现是否更快，不能只检查两个 Score 谁大，也不能简单用“两个单独置信区间是否重叠”代替差值/比值的置信区间。真正的比较对象是 **candidate 相对 baseline 的效应量分布**。
 
-## 七、落到 SeaTunnel Zeta：一套长期性能基线应该怎样分层
+## 七、一套长期性能基线应该怎样分层
 
 以下是从三篇论文推导出的工程方案。
 
@@ -550,7 +550,7 @@ CI (99.9%): [3722540113.172, 4263600680.907]
 优先覆盖性能敏感、边界稳定且可独立执行的路径：
 
 - Disruptor / BlockingQueue 入队出队；
-- SeaTunnelRow 序列化与反序列化；
+- 业务记录的序列化与反序列化；
 - Transform 调用链；
 - State 操作与快照元数据处理；
 - Checkpoint 协调器的核心数据结构；
@@ -576,7 +576,7 @@ CI (99.9%): [3722540113.172, 4263600680.907]
 - 无 Checkpoint、周期 Checkpoint、大状态 Checkpoint；
 - 不同并行度和不同背压强度。
 
-这层要回答：“Zeta 自己的执行链路发生了什么变化？”
+这层要回答：“引擎自身的执行链路发生了什么变化？”
 
 ### 7.3 第三层：独立 Driver 的分布式基准
 
@@ -635,11 +635,11 @@ INCONCLUSIVE 样本不足或波动过大，转 Nightly/人工复核
 
 ### Step 1：写下性能声明
 
-不要写“测试 Zeta 性能”，而要写：
+不要写“测试流处理引擎性能”，而要写：
 
 ```text
 在固定 JDK、硬件、并行度和均匀 Key 下，
-candidate 是否使无外部 I/O 的 Zeta 核心 Pipeline
+candidate 是否使无外部 I/O 的引擎核心 Pipeline
 可持续吞吐提升至少 3%，且 P99 Event-time Latency 不恶化超过 5%？
 ```
 
@@ -727,7 +727,7 @@ CPU / million records：-3.6%
 4. **吞吐必须和积压、延迟一起解释；可持续能力比瞬时摄入峰值更有价值。**
 5. **最终要报告变化幅度及其不确定性，并允许得出“证据不足”。**
 
-对于 JMH，严谨意味着理解 Fork、Warmup、Measurement 背后的独立性与生命周期；对于 Zeta，严谨意味着把 Driver、SUT、外部系统和观测边界拆清楚，并用可持续吞吐与 Event-time Latency 观察背压。
+对于 JMH，严谨意味着理解 Fork、Warmup、Measurement 背后的独立性与生命周期；对于分布式流处理引擎，严谨意味着把 Driver、SUT、外部系统和观测边界拆清楚，并用可持续吞吐与 Event-time Latency 观察背压。
 
 真正成熟的性能框架，不是每次都给出一个绿色或红色结论，而是能够回答：
 
