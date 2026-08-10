@@ -1,5 +1,5 @@
 ---
-title: "SeaTunnel 基准测试设计：如何得到可信的 Zeta 性能证据"
+title: "SeaTunnel 基准测试设计与实践"
 date: 2026-08-10T00:00:00+08:00
 draft: false
 tags: ["SeaTunnel", "Zeta", "Benchmark", "JMH", "性能工程"]
